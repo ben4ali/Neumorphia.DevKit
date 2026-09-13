@@ -1,0 +1,75 @@
+# Neumorphia DevKit (Soft UI Design System & Component Registry)
+
+> Neumorphia DevKit is an enterprise-grade, accessible Neumorphic (Soft UI) component registry and design system engineered for Tailwind CSS and React. Created by Ali Benkarrouch.
+
+## Core Lighting Physics & Mathematical Specification
+Neumorphic surfaces operate by treating UI elements not as discrete floating layers, but as extrusions or indentations within a continuous surface clay sheet.
+
+### Light Direction: 135° Angle
+- **Coordinate Formula**:
+  - `offsetX = distance * cos(135°)`
+  - `offsetY = distance * sin(135°)`
+- **Extrusion (Raised)**:
+  - Top-left highlight: `-Xpx -Ypx Blurpx [lightColor]`
+  - Bottom-right shadow: `+Xpx +Ypx Blurpx [darkColor]`
+- **Recess (Inset)**:
+  - Inset top-left shadow: `inset +Xpx +Ypx Blurpx [darkColor]`
+  - Inset bottom-right highlight: `inset -Xpx -Ypx Blurpx [lightColor]`
+
+## Color Tokens & WCAG AAA Contrast
+- **Light Theme Surface**: `#e6e7ee`
+  - Text Primary: `#2b2e42` (AAA 8.44:1 contrast)
+  - Dark Shadow: `#b8b9be` (60% alpha)
+  - Light Shadow: `#ffffff` (80% alpha)
+  - Border Stroke: `#D1D9E6`
+- **Dark Theme Surface**: `#1a1a1a`
+  - Text Primary: `#f1f3f5` (AAA 12.65:1 contrast)
+  - Dark Shadow: `#0a0a0a` (70% alpha)
+  - Light Shadow: `#282828` (40% alpha)
+  - Border Stroke: `rgba(255, 255, 255, 0.08)`
+
+## Component Catalog (28 Production Components)
+1. **Actions**: `buttons` (Extruded, Inset, Pill, Floating), `push-button` (Mechanical tactile keycap with active depression)
+2. **Forms & Selection**: `inputs` (Recessed search well), `switch` (Bistable clay toggle), `checkbox`, `radio`, `slider`, `range-slider` (Dual-handle range track), `pin-input` (OTP 4-digit code well), `kbd` (Mechanical keycaps)
+3. **Navigation**: `tabs` (Segmented clay tabs), `accordion` (Collapsible panels), `dock` (macOS-style floating dock), `pagination`, `stepper` (Multi-stage process indicator)
+4. **Feedback & Progress**: `progress` (Recessed bar with glowing LED filler), `divider` (Engraved groove divider), `alert` (Status notification card), `badge` (Low-chroma pill), `stat-card` (KPI summary widget), `gauge` (Circular dial meter), `skeleton` (Pulsing clay loader)
+5. **Overlays & Surfaces**: `card` (Extruded container), `dialog` (Modal with tactile actions), `tooltip`, `avatar` (Circular extruded profile well), `dropdown-menu`, `toast` (Floating reactive message)
+
+## Quickstart & Installation
+```bash
+npm install lucide-react framer-motion clsx tailwind-merge
+```
+
+### Global CSS Variables (`src/index.css`):
+```css
+:root {
+  --nms-bg-color: #e6e7ee;
+  --nms-text-color: #2b2e42;
+  --nms-shadow-dark: #b8b9be;
+  --nms-shadow-light: #ffffff;
+  --nms-border-color: #D1D9E6;
+}
+:root.dark, .dark {
+  --nms-bg-color: #1a1a1a;
+  --nms-text-color: #f1f3f5;
+  --nms-shadow-dark: #0a0a0a;
+  --nms-shadow-light: #282828;
+  --nms-border-color: rgba(255, 255, 255, 0.08);
+}
+```
+
+### Tailwind Config:
+```ts
+boxShadow: {
+  'neo-raised-sm': '3px 3px 6px var(--nms-shadow-dark), -3px -3px 6px var(--nms-shadow-light)',
+  'neo-raised-md': '6px 6px 12px var(--nms-shadow-dark), -6px -6px 12px var(--nms-shadow-light)',
+  'neo-inset-sm': 'inset 2px 2px 4px var(--nms-shadow-dark), inset -2px -2px 4px var(--nms-shadow-light)',
+}
+```
+
+## Useful Links
+- Live Registry: https://neumorphia-devkit.vercel.app/?view=components
+- Documentation: https://neumorphia-devkit.vercel.app/?view=docs
+- Shadow Generator: https://neumorphia-devkit.vercel.app/?view=playground
+- GitHub Repository: https://github.com/ben4ali/Neumorphia.DevKit
+- Author: Ali Benkarrouch (https://github.com/ben4ali)

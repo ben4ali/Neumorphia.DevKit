@@ -1,0 +1,23 @@
+# Robots.txt for Neumorphia DevKit
+# https://neumorphia-devkit.vercel.app
+
+User-agent: *
+Allow: /
+Allow: /?view=home
+Allow: /?view=components
+Allow: /?view=components&c=*
+Allow: /?view=docs
+Allow: /?view=playground
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /sitemap.xml
+
+# Prevent indexing of temporary/scratch/source maps
+Disallow: /api/
+Disallow: /*.map$
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Sitemaps
+Sitemap: https://neumorphia-devkit.vercel.app/sitemap.xml

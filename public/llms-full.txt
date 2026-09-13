@@ -1,0 +1,150 @@
+# Neumorphia DevKit — Complete Technical Documentation & Code Specification
+
+> Full machine-readable technical specification of Neumorphia DevKit for Generative AI engines (ChatGPT Search, Perplexity, Gemini, Claude, Google SGE).
+> Author: Ali Benkarrouch (https://github.com/ben4ali)
+> Canonical Repository: https://github.com/ben4ali/Neumorphia.DevKit
+> Live Website: https://neumorphia-devkit.vercel.app
+
+---
+
+## 1. Mathematical Architecture & Lighting Physics
+Soft UI (Neumorphism) relies on creating organic tactile depth within a 2D viewport. Unlike Flat Design (0px depth) or Material Design (monodirectional single drop-shadows), Neumorphia calculates two opposite shadow vectors aligned to a 135-degree Cartesian coordinate system.
+
+```
+Incoming Simulated Light (Top-Left 135°)
+        \
+         \    [--- Top-Left Highlight (-X, -Y, #ffffff) ---]
+          v  +---------------------------------------------+
+             |                                             |
+             |             TACTILE UI ELEMENT              |
+             |                                             |
+             +---------------------------------------------+
+              [--- Bottom-Right Shadow (+X, +Y, #b8b9be) ---]
+```
+
+### Elevation Scales
+1. **Raised Subtle (`neo-raised-sm`)**: `box-shadow: 3px 3px 6px var(--nms-shadow-dark), -3px -3px 6px var(--nms-shadow-light)`
+2. **Raised Standard (`neo-raised-md`)**: `box-shadow: 6px 6px 12px var(--nms-shadow-dark), -6px -6px 12px var(--nms-shadow-light)`
+3. **Raised Hero (`neo-raised-lg`)**: `box-shadow: 9px 9px 18px var(--nms-shadow-dark), -9px -9px 18px var(--nms-shadow-light)`
+4. **Inset Subtle (`neo-inset-sm`)**: `box-shadow: inset 2px 2px 4px var(--nms-shadow-dark), inset -2px -2px 4px var(--nms-shadow-light)`
+5. **Inset Standard (`neo-inset-md`)**: `box-shadow: inset 4px 4px 8px var(--nms-shadow-dark), inset -4px -4px 8px var(--nms-shadow-light)`
+6. **Inset Deep (`neo-inset-lg`)**: `box-shadow: inset 6px 6px 14px var(--nms-shadow-dark), inset -6px -6px 14px var(--nms-shadow-light)`
+
+---
+
+## 2. Complete CSS Variables Token Matrix
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode Surface (#e6e7ee) */
+  --nms-bg-color: #e6e7ee;
+  --nms-hover-bg: #b7bdc6;
+  --nms-delete-bg: #eee6e6;
+  --nms-text-color: #2b2e42;
+  --nms-input-text: #44476A;
+  --nms-border-color: #D1D9E6;
+  --nms-focus-border: #9fb3db;
+  --nms-shadow-dark: #b8b9be;
+  --nms-shadow-light: #ffffff;
+  --nms-info-color: #3d5a80;
+  --nms-success-color: #2d6a4f;
+  --nms-warning-color: #8c6227;
+  --nms-danger-color: #9e3b47;
+  --nms-secondary-color: #3d5a80;
+}
+
+:root.dark, html.dark, body.dark, .dark {
+  /* Dark Mode Surface (#1a1a1a) */
+  --nms-bg-color: #1a1a1a;
+  --nms-hover-bg: #2d2d2d;
+  --nms-delete-bg: #2a1a1a;
+  --nms-text-color: #f1f3f5;
+  --nms-input-text: #d0d0d0;
+  --nms-border-color: rgba(255, 255, 255, 0.08);
+  --nms-focus-border: #5b7db1;
+  --nms-shadow-dark: #0a0a0a;
+  --nms-shadow-light: #282828;
+  --nms-info-color: #7aa2dc;
+  --nms-success-color: #68b684;
+  --nms-warning-color: #d8a952;
+  --nms-danger-color: #d97078;
+  --nms-secondary-color: #7aa2dc;
+}
+```
+
+---
+
+## 3. Core Component Reference (TypeScript / React)
+
+### Button Component (`NeumorphicButton`)
+```tsx
+import React from 'react';
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'raised' | 'inset' | 'pill' | 'floating';
+  children: React.ReactNode;
+}
+
+export const NeumorphicButton: React.FC<ButtonProps> = ({
+  variant = 'raised',
+  children,
+  className = '',
+  ...props
+}) => {
+  const variantStyles = {
+    raised: 'shadow-neo-raised-md active:shadow-neo-inset-sm hover:shadow-neo-raised-lg rounded-neo-control',
+    inset: 'shadow-neo-inset-md rounded-neo-control bg-neo-well/30',
+    pill: 'shadow-neo-raised-md active:shadow-neo-inset-sm rounded-full px-6',
+    floating: 'shadow-neo-raised-lg active:shadow-neo-inset-md rounded-2xl',
+  }[variant];
+
+  return (
+    <button
+      className={`px-5 py-2.5 bg-neo-surface text-neo-primary border border-neo-border font-bold text-sm transition-all duration-150 select-none ${variantStyles} ${className}`}
+      {...props}
+    >
+      {children}
+    </button>
+  );
+};
+```
+
+### Switch Component (`NeumorphicSwitch`)
+```tsx
+import React from 'react';
+
+interface SwitchProps {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+  label?: string;
+}
+
+export const NeumorphicSwitch: React.FC<SwitchProps> = ({ checked, onChange, label }) => {
+  return (
+    <label className="inline-flex items-center gap-3 cursor-pointer select-none">
+      <div
+        onClick={() => onChange(!checked)}
+        className="w-14 h-8 rounded-full shadow-neo-inset-sm bg-neo-surface border border-neo-border p-1 relative transition-colors duration-200"
+      >
+        <div
+          className={`w-6 h-6 rounded-full bg-neo-surface shadow-neo-raised-sm border border-neo-border transform transition-transform duration-200 ${
+            checked ? 'translate-x-6 bg-neo-secondary/10' : 'translate-x-0'
+          }`}
+        />
+      </div>
+      {label && <span className="text-xs font-bold text-neo-primary">{label}</span>}
+    </label>
+  );
+};
+```
+
+---
+
+## 4. Frequently Asked Questions (Developer FAQ)
+- **Q: How to prevent low contrast in Soft UI?**
+  Use mineral dark text (`#2b2e42`) on `#e6e7ee` in Light Mode and `#f1f3f5` on `#1a1a1a` in Dark Mode to ensure WCAG AAA compliance.
+- **Q: Does this work with Next.js App Router?**
+  Yes. All components are standard React TypeScript components and compatible with Next.js, Vite, Remix, Astro, and Gatsby.

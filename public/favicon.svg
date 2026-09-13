@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <style>
+    :root {
+      --bg-color: #e6e7ee;
+      --fg-color: #31344b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #1a1a1a;
+        --fg-color: #e5e5e5;
+      }
+    }
+  </style>
+  <rect width="512" height="512" rx="112" fill="var(--bg-color)" />
+  <g fill="var(--fg-color)">
+    <!-- 1. Bouton tactile central -->
+    <rect x="184" y="184" width="144" height="144" rx="52" />
+
+    <!-- 2. Arche superieure gauche (Highlight) -->
+    <path d="M 124 256
+             A 132 132 0 0 1 256 124
+             C 269.25 124, 280 113.25, 280 100
+             C 280 86.75, 269.25 76, 256 76
+             A 180 180 0 0 0 76 256
+             C 76 269.25, 86.75 280, 100 280
+             C 113.25 280, 124 269.25, 124 256 Z" />
+
+    <!-- 3. Arche inferieure droite (Dark Shadow) -->
+    <path d="M 388 256
+             A 132 132 0 0 1 256 388
+             C 242.75 388, 232 398.75, 232 412
+             C 232 425.25, 242.75 436, 256 436
+             A 180 180 0 0 0 436 256
+             C 436 242.75, 425.25 232, 412 232
+             C 398.75 232, 388 242.75, 388 256 Z" />
+  </g>
+</svg>

@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Surface Bases (Light Theme - #e6e7ee) */
+  --nms-bg-color: #e6e7ee;
+  --nms-delete-bg: #eee6e6;
+  --nms-hover-bg: #b7bdc6;
+
+  /* Text Colors */
+  --nms-text-color: #2b2e42;
+  --nms-input-text: #383b56;
+  --muted-foreground: #5c677d;
+
+  /* Strokes & Focus */
+  --nms-border-color: #D1D9E6;
+  --nms-border-color-hover: rgba(209, 217, 230, 0.4);
+  --nms-focus-border: #9fb3db;
+  --nms-delete-border: #e6d3d3;
+
+  /* Dual-Offset Shadow Coordinates (Light Mode 135deg Light) */
+  --nms-shadow-dark: #b8b9be;
+  --nms-shadow-light: #ffffff;
+  --nms-delete-shadow-dark: #bdafaf;
+  --nms-delete-shadow-light: #fff4f4;
+  --nms-hover-shadow-dark: #95969a;
+  --nms-hover-shadow-light: #d5d4d4;
+
+  /* Soft, Muted Mineral Semantic Colors (Light Mode) */
+  --nms-info-color: #3d5a80;      /* Muted slate denim */
+  --nms-primary-color: #3d5a80;   /* Primary */
+  --nms-success-color: #2d6a4f;   /* Muted sage pine */
+  --nms-warning-color: #8c6227;   /* Muted earthy ochre */
+  --nms-danger-color: #9e3b47;    /* Muted brick wine */
+  --nms-neutral-color: #4a5568;   /* Soft slate mineral */
+  --nms-accent-color: #6a5d89;    /* Dusty amethyst */
+  --nms-secondary-color: #3d5a80; /* Harmonized secondary */
+}
+
+:root.dark, html.dark, body.dark, .dark {
+  /* Surface Bases (Dark Theme - #1a1a1a) */
+  --nms-bg-color: #1a1a1a;
+  --nms-delete-bg: #2a1a1a;
+  --nms-hover-bg: #2d2d2d;
+
+  /* Text Colors */
+  --nms-text-color: #f1f3f5;
+  --nms-input-text: #e0e2e6;
+  --muted-foreground: #a0aec0;
+
+  /* Strokes & Focus */
+  --nms-border-color: rgba(255, 255, 255, 0.08);
+  --nms-border-color-hover: rgba(255, 255, 255, 0.14);
+  --nms-focus-border: #5b7db1;
+  --nms-delete-border: rgba(244, 63, 94, 0.2);
+
+  /* Dual-Offset Shadow Coordinates (Dark Mode 135deg Light) */
+  --nms-shadow-dark: #0a0a0a;
+  --nms-shadow-light: #282828;
+  --nms-delete-shadow-dark: #140808;
+  --nms-delete-shadow-light: #2d1a1a;
+  --nms-hover-shadow-dark: #050505;
+  --nms-hover-shadow-light: #333333;
+
+  /* Soft, Low-Luminance Pastel Semantic Colors (Dark Mode) */
+  --nms-info-color: #7aa2dc;      /* Soft glacier slate */
+  --nms-primary-color: #7aa2dc;   /* Primary */
+  --nms-success-color: #68b684;   /* Soft moss mint */
+  --nms-warning-color: #d8a952;   /* Soft warm bronze */
+  --nms-danger-color: #d97078;    /* Soft dusty rose */
+  --nms-neutral-color: #94a3b8;   /* Soft mineral slate */
+  --nms-accent-color: #a78bfa;    /* Soft dusty lilac */
+  --nms-secondary-color: #7aa2dc; /* Harmonized secondary */
+}
+
+/* Global Typography Calibration */
+html, body {
+  font-family: 'Nunito', 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--nms-bg-color);
+  color: var(--nms-text-color);
+  font-size: 15px;
+  line-height: 1.65;
+  letter-spacing: 0.012em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Nunito', 'Nunito Sans', sans-serif;
+  color: var(--nms-text-color);
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-weight: 750;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+code, kbd, pre, samp {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  letter-spacing: -0.01em;
+}
+
+/* Inline code chip styling */
+:not(pre) > code {
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.35rem;
+  background-color: var(--nms-hover-bg);
+  box-shadow: inset 1px 1px 2px var(--nms-shadow-dark), inset -1px -1px 2px var(--nms-shadow-light);
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+/* Custom Neumorphic Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nms-bg-color);
+  box-shadow: inset 1px 1px 3px var(--nms-shadow-dark), inset -1px -1px 3px var(--nms-shadow-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--nms-bg-color);
+  border-radius: 9999px;
+  box-shadow: 2px 2px 4px var(--nms-shadow-dark), -2px -2px 4px var(--nms-shadow-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  box-shadow: inset 1px 1px 3px var(--nms-shadow-dark), inset -1px -1px 3px var(--nms-shadow-light);
+}
+
+/* Engraved Divider with Pure Directional Depth */
+.nms-divider-h {
+  height: 2px;
+  border-top: 1px solid var(--nms-shadow-dark);
+  border-bottom: 1px solid var(--nms-shadow-light);
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.nms-divider-v {
+  width: 2px;
+  border-left: 1px solid var(--nms-shadow-dark);
+  border-right: 1px solid var(--nms-shadow-light);
+}
