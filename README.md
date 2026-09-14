@@ -2,7 +2,7 @@
   <img src="public/og-image.svg" alt="Neumorphia DevKit Banner" width="100%" style="border-radius: 16px; margin-bottom: 24px;" />
 
   # Neumorphia DevKit
-  ### Production-Grade Neumorphic (Soft UI) Component Registry for Tailwind CSS &amp; React
+  ### Neumorphic (Soft UI) Components for React &amp; Tailwind CSS
 
   <p align="center">
     <a href="https://neumorphia-devkit.vercel.app"><strong>Live Documentation &amp; Sandbox »</strong></a>
@@ -13,7 +13,6 @@
     <img src="https://img.shields.io/badge/React-18%2B-3d5a80?style=flat-square&logo=react&logoColor=white" alt="React 18+" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-v3_%26_v4-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
     <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/Accessibility-WCAG_AAA-2d6a4f?style=flat-square" alt="WCAG AAA" />
     <img src="https://img.shields.io/badge/License-MIT-4a5568?style=flat-square" alt="License MIT" />
   </p>
 </div>
@@ -22,22 +21,18 @@
 
 ## Overview
 
-**Neumorphia DevKit** is a developer-first component registry and design system engineered to bring tactile, authentic **Neumorphism (Soft UI)** to modern React and Tailwind CSS applications.
+**Neumorphia DevKit** is a simple, copy-paste component library for React and Tailwind CSS. It gives you clean, tactile Soft UI components that you can drop directly into your own projects.
 
-Unlike legacy aesthetic mockups that lacked contrast and accessibility, Neumorphia DevKit is built upon rigorous mathematical lighting principles and production-ready engineering:
-
-- **135° Directional Lighting Physics**: Dual-offset highlights and drop shadows calculated along a consistent top-left specular vector.
-- **WCAG 2.1 AAA Accessibility**: Deep mineral charcoal typography (`#2b2e42`) in Light Mode (8.44:1 contrast ratio) and radiant pastel accents on dark clay (`#1a1a1a`) in Dark Mode (12.65:1 contrast ratio).
-- **Zero-Contrast Clay Substrates**: Controls are extruded directly from or carved into the background sheet (`--nms-bg-color`), eliminating unnatural floating card seams.
-- **28+ Production Components**: Fully-functional TypeScript + Tailwind TSX components spanning Actions, Forms, Navigation, Feedback, and Surfaces.
-- **CLI &amp; Direct Integration**: Add components in seconds using `npx neumorphia-devkit add <component>` or 1-click copy from the component source viewer.
-- **AI Agent Skill Ready**: Includes structured prompt specifications for Cursor (`.cursorrules`), Windsurf, Copilot, and Claude Code.
+- **28+ Components**: Buttons, sliders, switches, tabs, cards, modals, gauges, and more.
+- **Light &amp; Dark Mode**: Built-in support for dark mode with soft shadows and readable text contrast.
+- **Easy CLI or Copy-Paste**: Add components via `npx neumorphia-devkit add <component>` or copy the source code directly from the website.
+- **Zero Heavy Dependencies**: Clean TypeScript React code with Tailwind CSS classes that you own and can edit anytime.
 
 ---
 
-## CLI Installation
+## CLI Quickstart
 
-You can add any component directly to your project using the official CLI:
+You can add any component directly to your project using the CLI:
 
 ```bash
 # npm
@@ -52,30 +47,30 @@ bunx neumorphia-devkit add <component-name>
 
 ### Examples
 ```bash
-npx neumorphia-devkit add range-slider
 npx neumorphia-devkit add button
+npx neumorphia-devkit add range-slider
 npx neumorphia-devkit add gauge
 npx neumorphia-devkit add tabs
 ```
 
-Alternatively, download directly via `curl`:
+You can also download components directly with `curl`:
 ```bash
-curl -o src/components/ui/RangeSlider.tsx https://raw.githubusercontent.com/ben4ali/Neumorphia.DevKit/main/src/registry/components/RangeSlider.tsx
+curl -o src/components/ui/Button.tsx https://raw.githubusercontent.com/ben4ali/Neumorphia.DevKit/main/src/registry/components/Button.tsx
 ```
 
 ---
 
-## Manual Setup Guide
+## Manual Setup
 
-### Step 1: Install Dependencies
+### 1. Install Supporting Packages
 ```bash
 npm install lucide-react framer-motion clsx tailwind-merge
 ```
 
 ---
 
-### Step 2: Configure CSS Variables
-Add the core directional lighting tokens into your global stylesheet (e.g., `src/index.css` or `app/globals.css`):
+### 2. Add CSS Variables
+Add the base shadow and color variables to your `src/index.css` (or `app/globals.css`):
 
 ```css
 @tailwind base;
@@ -83,7 +78,7 @@ Add the core directional lighting tokens into your global stylesheet (e.g., `src
 @tailwind utilities;
 
 :root {
-  /* Light Theme Surface (#e6e7ee) */
+  /* Light Mode */
   --nms-bg-color: #e6e7ee;
   --nms-hover-bg: #b7bdc6;
   --nms-delete-bg: #eee6e6;
@@ -92,11 +87,11 @@ Add the core directional lighting tokens into your global stylesheet (e.g., `src
   --nms-border-color: #D1D9E6;
   --nms-focus-border: #9fb3db;
 
-  /* 135° Directional Shadow Coordinates */
+  /* Shadows */
   --nms-shadow-dark: #b8b9be;
   --nms-shadow-light: #ffffff;
 
-  /* Semantic Tones */
+  /* Colors */
   --nms-info-color: #3d5a80;
   --nms-success-color: #2d6a4f;
   --nms-warning-color: #8c6227;
@@ -105,7 +100,7 @@ Add the core directional lighting tokens into your global stylesheet (e.g., `src
 }
 
 :root.dark, html.dark, body.dark, .dark {
-  /* Dark Theme Surface (#1a1a1a) */
+  /* Dark Mode */
   --nms-bg-color: #1a1a1a;
   --nms-hover-bg: #2d2d2d;
   --nms-delete-bg: #2a1a1a;
@@ -114,11 +109,11 @@ Add the core directional lighting tokens into your global stylesheet (e.g., `src
   --nms-border-color: rgba(255, 255, 255, 0.035);
   --nms-focus-border: #5b7db1;
 
-  /* 135° Directional Shadow Coordinates */
+  /* Shadows */
   --nms-shadow-dark: #0a0a0a;
   --nms-shadow-light: #282828;
 
-  /* Semantic Tones */
+  /* Colors */
   --nms-info-color: #7aa2dc;
   --nms-success-color: #68b684;
   --nms-warning-color: #d8a952;
@@ -129,8 +124,8 @@ Add the core directional lighting tokens into your global stylesheet (e.g., `src
 
 ---
 
-### Step 3: Extend Tailwind Configuration
-In your `tailwind.config.ts`, register the elevation tokens and colors:
+### 3. Add Tailwind Config
+In your `tailwind.config.ts`, add the shadow and color tokens:
 
 ```ts
 import type { Config } from 'tailwindcss';
@@ -182,95 +177,51 @@ export default {
 
 ---
 
-## Component Catalog
+## Component List
 
-| Category | Component | Description |
-| :--- | :--- | :--- |
-| **Actions** | `Button` | Standard, subtle, and semantic tactile buttons with active click depression |
-| | `PushButton` | Mechanical keycap with tactile travel and spring resistance |
-| **Forms &amp; Selection** | `Input` | Recessed tactile text input with focus ring |
-| | `Textarea` | Deep inset multi-line editor with smooth scroll track |
-| | `Select` | Concave custom dropdown select with chevron indicator |
-| | `Switch` | Dual-state tactile toggle with sliding pill carriage |
-| | `Checkbox` | Inset check box with animated SVG checkmark |
-| | `Radio` | Recessed radio ring with elevated core indicator |
-| | `Slider` | Continuous horizontal track with tactile grab thumb |
-| | `RangeSlider` | Dual-thumb interval selector with pointer capture bounds |
-| | `PinInput` | Segmented OTP security verification fields |
-| | `Kbd` | Realistic extruded keyboard keycaps with press action |
-| **Navigation** | `Tabs` | Pill-encased segmented controller with sliding indicator |
-| | `Accordion` | Smoothly collapsible sections with engraved division |
-| | `Dock` | Floating macOS-style control dock with tooltips |
-| | `Pagination` | Numbered page navigation with active well states |
-| | `Stepper` | Multi-step progress timeline with completed checkpoints |
-| **Feedback** | `Progress` | Recessed horizontal progress bar with active gradient fill |
-| | `Gauge` | Circular radial meter with SVG arc progression and centered readout |
-| | `Divider` | Dual-line engraved directional seam |
-| | `Alert` | Soft status alerts with semantic icon badging |
-| | `Badge` | Inset and extruded micro status chips |
-| | `StatCard` | Metric analytics card with percentage change delta |
-| | `Skeleton` | Shimmering placeholder pulse for loading states |
-| **Surfaces &amp; Overlays** | `Card` | Tactile content container with Level 2 elevation |
-| | `Dialog` | Elevated modal dialog with darkened backdrop |
-| | `Tooltip` | Floating micro-label with directional arrow |
-| | `Avatar` | Circular user profile badge with avatar groups |
-| | `DropdownMenu` | Floating popover menu with smooth item hover depression |
-| | `Toast` | Dismissible notification snackbar with timeout indicator |
+| Category | Components |
+| :--- | :--- |
+| **Actions** | `Button`, `PushButton` |
+| **Forms &amp; Inputs** | `Input`, `Textarea`, `Select`, `Switch`, `Checkbox`, `Radio`, `Slider`, `RangeSlider`, `PinInput`, `Kbd` |
+| **Navigation** | `Tabs`, `Accordion`, `Dock`, `Pagination`, `Stepper` |
+| **Feedback** | `Progress`, `Gauge`, `Divider`, `Alert`, `Badge`, `StatCard`, `Skeleton` |
+| **Surfaces &amp; Overlays** | `Card`, `Dialog`, `Tooltip`, `Avatar`, `DropdownMenu`, `Toast` |
 
 ---
 
-## Directional Lighting Model
+## How Neumorphism Works
 
-Neumorphism calculates light vectors from a virtual light source positioned at **135° (top-left)**:
+Neumorphic elements use two shadows from a top-left light angle:
+- A light highlight on the top-left
+- A dark shadow on the bottom-right
 
 ```text
-       Incoming 135° Light
+       Light (top-left)
               \
-               \    [-Xpx, -Ypx Light Highlight]
+               \    [Top-Left Highlight]
                 v  +-------------------------------------+
                    |                                     |
-                   |      TACTILE NEUMORPHIC SURFACE     |
+                   |           NEUMORPHIC SHAPE          |
                    |                                     |
                    +-------------------------------------+
-                    [+Xpx, +Ypx Dark Shadow]
+                    [Bottom-Right Dark Shadow]
 ```
 
-### Elevation Matrix
-- **`shadow-neo-raised-sm`**: Micro-elevation (chips, badges, small controls).
-- **`shadow-neo-raised-md`**: Standard elevation (buttons, cards, popovers).
-- **`shadow-neo-raised-lg`**: Heavy floating depth (hero structures, floating modals).
-- **`shadow-neo-inset-sm`**: Subtle recess (input fields, wells, checkboxes).
-- **`shadow-neo-inset-md`**: Active depression (pressed buttons, slider grooves).
-- **`shadow-neo-inset-lg`**: Deep cavity (gauges, progress tracks).
-
----
-
-## AI Agent Integration
-
-You can provide the following instructions to **Cursor** (`.cursorrules`), **Windsurf** (`.windsurfrules`), **Copilot**, or **Claude Code** (`CLAUDE.md`) to generate authentic Neumorphic components automatically:
-
-```markdown
-# Neumorphia DevKit — AI Coding Agent Rules
-You are an expert Frontend Engineer specialized in Neumorphic (Soft UI) design.
-When generating components:
-1. Always use 'bg-neo-surface' or 'bg-neo-base' (zero-contrast clay background).
-2. Pair dual 135° directional shadows ('shadow-neo-raised-md', 'shadow-neo-inset-sm').
-3. Use 'text-neo-primary' (#2b2e42 light / #f1f3f5 dark) for WCAG AAA contrast.
-4. Add 'border border-neo-border/40 dark:border-white/[0.03]' and smooth rounded corners ('rounded-neo-control').
-5. Never use generic flat white cards or single black drop shadows.
-```
+### Shadow Levels
+- **Raised (`shadow-neo-raised-md`)**: Used for clickable buttons, cards, and dropdowns.
+- **Inset (`shadow-neo-inset-sm`)**: Used for text inputs, checkboxes, and toggle tracks.
 
 ---
 
 ## Author &amp; Credits
 
-**Neumorphia DevKit** is engineered and maintained by **Ali Benkarrouch**:
+Created and maintained by **Ali Benkarrouch**:
 - GitHub: [@ben4ali](https://github.com/ben4ali)
 - Repository: [https://github.com/ben4ali/Neumorphia.DevKit](https://github.com/ben4ali/Neumorphia.DevKit)
-- Package: [https://www.npmjs.com/package/neumorphia-devkit](https://www.npmjs.com/package/neumorphia-devkit)
+- npm: [https://www.npmjs.com/package/neumorphia-devkit](https://www.npmjs.com/package/neumorphia-devkit)
 
 ---
 
 ## License
 
-Distributed under the **MIT License**. Free for commercial and personal use.
+MIT License. Free to use in personal and commercial projects.
