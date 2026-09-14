@@ -8,14 +8,17 @@ const __dirname = path.dirname(__filename);
 const BASE_URL = 'https://neumorphia.aliben.me';
 const currentDate = new Date().toISOString().split('T')[0];
 
-// Static Core Pages
+// Static Core Clean Routes
 const corePages = [
   { path: '', priority: '1.0', changefreq: 'weekly' },
-  { path: '?view=home', priority: '0.9', changefreq: 'weekly' },
-  { path: '?view=components', priority: '0.9', changefreq: 'weekly' },
-  { path: '?view=docs', priority: '0.9', changefreq: 'weekly' },
-  { path: '?view=playground', priority: '0.9', changefreq: 'weekly' },
-  { path: '?view=ai', priority: '0.9', changefreq: 'weekly' },
+  { path: 'components', priority: '0.9', changefreq: 'weekly' },
+  { path: 'docs', priority: '0.9', changefreq: 'weekly' },
+  { path: 'playground', priority: '0.9', changefreq: 'weekly' },
+  { path: 'ai', priority: '0.9', changefreq: 'weekly' },
+  { path: 'examples', priority: '0.9', changefreq: 'weekly' },
+  { path: 'iot', priority: '0.8', changefreq: 'weekly' },
+  { path: 'music', priority: '0.8', changefreq: 'weekly' },
+  { path: 'calculator', priority: '0.8', changefreq: 'weekly' },
 ];
 
 // Read component definition directory
@@ -23,7 +26,6 @@ const defsDir = path.resolve(__dirname, '../src/registry/definitions');
 const componentFiles = fs.readdirSync(defsDir).filter((file) => file.endsWith('.definition.tsx'));
 
 const componentSlugs = componentFiles.map((file) => {
-  // e.g. "pushbutton.definition.tsx" -> "push-button" or matched id
   const content = fs.readFileSync(path.join(defsDir, file), 'utf-8');
   const idMatch = content.match(/id:\s*['"]([^'"]+)['"]/);
   if (idMatch && idMatch[1]) {
@@ -56,9 +58,9 @@ for (const page of corePages) {
 `;
 }
 
-// Add Each Component Page
+// Add Each Component Page (Clean Semantic Path)
 for (const slug of uniqueComponentSlugs) {
-  const loc = `${BASE_URL}/?view=components&amp;c=${slug}`;
+  const loc = `${BASE_URL}/components/${slug}`;
   xml += `  <url>
     <loc>${loc}</loc>
     <lastmod>${currentDate}</lastmod>

@@ -3,11 +3,15 @@
 
 User-agent: *
 Allow: /
-Allow: /?view=home
-Allow: /?view=components
-Allow: /?view=components&c=*
-Allow: /?view=docs
-Allow: /?view=playground
+Allow: /components
+Allow: /components/*
+Allow: /docs
+Allow: /playground
+Allow: /ai
+Allow: /examples
+Allow: /iot
+Allow: /music
+Allow: /calculator
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /sitemap.xml

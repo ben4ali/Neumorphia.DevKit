@@ -82,7 +82,7 @@ export function getMetadataForRoute(
         return {
           title: `${component.title} — Neumorphic Tailwind Component | ${SITE_CONFIG.name}`,
           description: `Free, accessible Neumorphic ${component.title} component built with Tailwind CSS and raw CSS. Includes interactive preview, dark mode, ${component.variants.length} variants, and copyable code.`,
-          canonicalUrl: `${baseUrl}/?view=components&c=${component.id}`,
+          canonicalUrl: `${baseUrl}/components/${component.id}`,
           ogType: 'article',
           ogImage: SITE_CONFIG.ogImage,
           keywords: [
@@ -99,7 +99,7 @@ export function getMetadataForRoute(
         title: `Component Registry — 28+ Tactile Soft UI Components | ${SITE_CONFIG.name}`,
         description:
           'Explore our complete catalog of 28+ production-ready Neumorphic React components. Copy-paste buttons, inputs, dials, switches, badges, and dashboard widgets for Tailwind CSS.',
-        canonicalUrl: `${baseUrl}/?view=components`,
+        canonicalUrl: `${baseUrl}/components`,
         ogType: 'website',
         ogImage: SITE_CONFIG.ogImage,
         keywords: SITE_CONFIG.defaultKeywords,
@@ -110,7 +110,7 @@ export function getMetadataForRoute(
         title: `Neumorphic Shadow & CSS Generator | ${SITE_CONFIG.name}`,
         description:
           'Generate mathematically harmonized Neumorphic box-shadows, extrusion depths, and Tailwind tokens in real time with our live Soft UI playground.',
-        canonicalUrl: `${baseUrl}/?view=playground`,
+        canonicalUrl: `${baseUrl}/playground`,
         ogType: 'website',
         ogImage: SITE_CONFIG.ogImage,
         keywords: [
@@ -128,7 +128,7 @@ export function getMetadataForRoute(
         title: `Installation & Quickstart Guide | ${SITE_CONFIG.name}`,
         description:
           'Add authentic Neumorphic styling to your React & Tailwind application in three easy steps with balanced 135° lighting physics and CSS variables.',
-        canonicalUrl: `${baseUrl}/?view=docs`,
+        canonicalUrl: `${baseUrl}/docs`,
         ogType: 'article',
         ogImage: SITE_CONFIG.ogImage,
         keywords: [
@@ -145,7 +145,7 @@ export function getMetadataForRoute(
         title: `AI Prompts & Agent Skills (.cursorrules) | ${SITE_CONFIG.name}`,
         description:
           'Equip modern AI coding agents (Cursor, Windsurf, GitHub Copilot, Claude Code, and ChatGPT) with authentic Neumorphic system prompts, .cursorrules, and component request templates.',
-        canonicalUrl: `${baseUrl}/?view=ai`,
+        canonicalUrl: `${baseUrl}/ai`,
         ogType: 'article',
         ogImage: SITE_CONFIG.ogImage,
         keywords: [
@@ -166,7 +166,7 @@ export function getMetadataForRoute(
         title: `IoT Sensor Console & Telemetry Dashboard | ${SITE_CONFIG.name}`,
         description:
           'Tactile industrial IoT sensor dashboard with real-time analog captors, 135° dial gauges, hardware push-keys, and analog calibration filters.',
-        canonicalUrl: `${baseUrl}/?view=iot`,
+        canonicalUrl: `${baseUrl}/iot`,
         ogType: 'website',
         ogImage: SITE_CONFIG.ogImage,
         keywords: [
@@ -183,7 +183,7 @@ export function getMetadataForRoute(
         title: `Audiophile Music & Streaming Console | ${SITE_CONFIG.name}`,
         description:
           'Tactile Neumorphic music player and studio dashboard featuring rotating vinyl hardware, active DAC telemetry, bit-perfect streaming, and soft-extruded transport controls.',
-        canonicalUrl: `${baseUrl}/?view=music`,
+        canonicalUrl: `${baseUrl}/music`,
         ogType: 'website',
         ogImage: SITE_CONFIG.ogImage,
         keywords: [
@@ -201,7 +201,7 @@ export function getMetadataForRoute(
         title: `Scientific Calculator & Keypad Hardware | ${SITE_CONFIG.name}`,
         description:
           'Precision Neumorphic scientific calculator with tactile soft keycaps, recessed LCD calculation tape, and mathematical functions.',
-        canonicalUrl: `${baseUrl}/?view=calculator`,
+        canonicalUrl: `${baseUrl}/calculator`,
         ogType: 'website',
         ogImage: SITE_CONFIG.ogImage,
         keywords: [
@@ -218,7 +218,7 @@ export function getMetadataForRoute(
         title: `Real-World Application Examples & Templates | ${SITE_CONFIG.name}`,
         description:
           'Interactive, production-ready Neumorphic application templates including an industrial IoT telemetry console and an audiophile music streaming app.',
-        canonicalUrl: `${baseUrl}/?view=examples`,
+        canonicalUrl: `${baseUrl}/examples`,
         ogType: 'website',
         ogImage: SITE_CONFIG.ogImage,
         keywords: [
@@ -271,7 +271,7 @@ export function generateStructuredData(
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: `${SITE_CONFIG.url}/?view=components&c={search_term_string}`,
+        urlTemplate: `${SITE_CONFIG.url}/components/{search_term_string}`,
       },
       'query-input': 'required name=search_term_string',
     },

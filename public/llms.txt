@@ -68,8 +68,8 @@ boxShadow: {
 ```
 
 ## Useful Links
-- Live Registry: https://neumorphia.aliben.me/?view=components
-- Documentation: https://neumorphia.aliben.me/?view=docs
-- Shadow Generator: https://neumorphia.aliben.me/?view=playground
+- Live Registry: https://neumorphia.aliben.me/components
+- Documentation: https://neumorphia.aliben.me/docs
+- Shadow Generator: https://neumorphia.aliben.me/playground
 - GitHub Repository: https://github.com/ben4ali/Neumorphia.DevKit
 - Author: Ali Benkarrouch (https://github.com/ben4ali)
