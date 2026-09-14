@@ -3,7 +3,7 @@
 > Full machine-readable technical specification of Neumorphia DevKit for Generative AI engines (ChatGPT Search, Perplexity, Gemini, Claude, Google SGE).
 > Author: Ali Benkarrouch (https://github.com/ben4ali)
 > Canonical Repository: https://github.com/ben4ali/Neumorphia.DevKit
-> Live Website: https://neumorphia-devkit.vercel.app
+> Live Website: https://neumorphia.aliben.me
 
 ---
 

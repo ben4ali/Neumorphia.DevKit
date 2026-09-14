@@ -1,5 +1,5 @@
 # Robots.txt for Neumorphia DevKit
-# https://neumorphia-devkit.vercel.app
+# https://neumorphia.aliben.me
 
 User-agent: *
 Allow: /
@@ -20,4 +20,4 @@ Disallow: /*.map$
 Crawl-delay: 1
 
 # Sitemaps
-Sitemap: https://neumorphia-devkit.vercel.app/sitemap.xml
+Sitemap: https://neumorphia.aliben.me/sitemap.xml

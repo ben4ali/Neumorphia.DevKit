@@ -4,11 +4,11 @@ import { AppView } from '../hooks/useRegistry';
 export const SITE_CONFIG = {
   name: 'Neumorphia DevKit',
   shortName: 'Neumorphia',
-  url: 'https://neumorphia-devkit.vercel.app',
+  url: 'https://neumorphia.aliben.me',
   author: 'Ali Benkarrouch',
   authorUrl: 'https://github.com/ben4ali',
   repoUrl: 'https://github.com/ben4ali/Neumorphia.DevKit',
-  ogImage: 'https://neumorphia-devkit.vercel.app/og-image.png',
+  ogImage: 'https://neumorphia.aliben.me/og-image.svg',
   twitterHandle: '@ben4ali',
   themeColor: '#e6e7ee',
   darkThemeColor: '#1a1a1a',
