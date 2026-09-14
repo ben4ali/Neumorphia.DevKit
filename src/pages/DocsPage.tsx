@@ -322,6 +322,19 @@ export function MyDashboard() {
               {copiedSection === 'installCmd' ? 'Copied ✓' : 'Copy'}
             </button>
           </div>
+
+          {/* Quick CLI Add Helper */}
+          <div className="pt-2 border-t border-neo-border/30 dark:border-black/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs">
+            <span className="text-neo-primary/70 font-semibold">
+              Add any component to your project instantly via CLI:
+            </span>
+            <div className="inline-flex items-center gap-2 bg-[#111318] px-3 py-1 rounded-neo-control border border-black/40 dark:border-white/[0.03]">
+              <span className="text-neutral-500 font-mono select-none">$</span>
+              <code className="raw-code font-mono text-[11px] text-neutral-100 font-semibold selection:bg-indigo-600 selection:text-white">
+                npx neumorphia-devkit add &lt;component&gt;
+              </code>
+            </div>
+          </div>
         </div>
 
         {/* Example Usage Snippet */}
