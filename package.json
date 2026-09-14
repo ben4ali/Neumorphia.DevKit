@@ -1,6 +1,6 @@
 {
   "name": "neumorphia-devkit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Neumorphic (Soft UI) component library and CLI for React and Tailwind CSS.",
   "type": "module",
   "author": "Ali Benkarrouch",

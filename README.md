@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/og-image.svg" alt="Neumorphia DevKit Banner" width="100%" style="border-radius: 16px; margin-bottom: 24px;" />
+  <img src="https://raw.githubusercontent.com/ben4ali/Neumorphia.DevKit/main/public/og-image.svg" alt="Neumorphia DevKit Banner" width="100%" style="border-radius: 16px; margin-bottom: 24px;" />
 
   # Neumorphia DevKit
   ### Neumorphic (Soft UI) Components for React &amp; Tailwind CSS
