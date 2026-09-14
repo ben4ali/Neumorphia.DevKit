@@ -1,11 +1,13 @@
 {
   "name": "neumorphia-devkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tactile, physics-driven Neumorphic (Soft UI) component devkit and CLI for React & Tailwind CSS.",
   "type": "module",
   "author": "Ali Benkarrouch",
   "license": "MIT",
-  "bin": "./bin/cli.js",
+  "bin": {
+    "neumorphia-devkit": "bin/cli.js"
+  },
   "files": [
     "bin",
     "src/registry/components",
