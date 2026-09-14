@@ -193,8 +193,8 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
       >
         {activeTab === 'cli' ? (
           <div className="flex items-center gap-3 py-2 px-1 selection:bg-indigo-600 selection:text-white">
-            <span className="text-neutral-400 select-none font-bold text-sm">$</span>
-            <code className="text-white font-bold text-sm select-all tracking-wide selection:bg-indigo-600 selection:text-white">
+            <span className="text-neutral-500 select-none font-bold text-sm">$</span>
+            <code className="raw-code text-neutral-100 font-semibold text-sm select-all tracking-wide selection:bg-indigo-600 selection:text-white">
               {getCliCommand()}
             </code>
           </div>

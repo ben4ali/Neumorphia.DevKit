@@ -310,8 +310,8 @@ export function MyDashboard() {
 
           <div className="flex items-center justify-between p-3.5 rounded-neo-control bg-[#111318] border border-black/40 dark:border-white/[0.03] shadow-inner selection:bg-indigo-600 selection:text-white">
             <div className="flex items-center gap-2.5 overflow-hidden mr-2">
-              <span className="text-xs font-mono font-bold text-neutral-400 select-none">$</span>
-              <code className="text-xs font-mono font-bold text-white tracking-wide selection:bg-indigo-600 selection:text-white truncate">
+              <span className="text-xs font-mono font-bold text-neutral-500 select-none">$</span>
+              <code className="raw-code text-xs font-mono font-semibold text-neutral-100 tracking-wide selection:bg-indigo-600 selection:text-white truncate">
                 {getInstallCmd()}
               </code>
             </div>
