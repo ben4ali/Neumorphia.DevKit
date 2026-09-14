@@ -52,8 +52,8 @@
   --muted-foreground: #a0aec0;
 
   /* Strokes & Focus */
-  --nms-border-color: rgba(255, 255, 255, 0.08);
-  --nms-border-color-hover: rgba(255, 255, 255, 0.14);
+  --nms-border-color: rgba(255, 255, 255, 0.035);
+  --nms-border-color-hover: rgba(255, 255, 255, 0.07);
   --nms-focus-border: #5b7db1;
   --nms-delete-border: rgba(244, 63, 94, 0.2);
 

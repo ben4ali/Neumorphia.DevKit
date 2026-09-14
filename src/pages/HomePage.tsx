@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { AppView } from '../hooks/useRegistry';
 import { NeumorphicSwitch } from '../registry/components/Switch';
 import { NeumorphicBadge } from '../registry/components/Badge';
@@ -7,23 +8,130 @@ interface HomePageProps {
   onNavigate: (view: AppView, componentId?: string) => void;
 }
 
+/**
+ * True Differential Gravitational Physics Simulation
+ * v(theta) = sqrt(v_top^2 + 2 * g * (1 - cos(theta)))
+ * Provides 100% continuous, butter-smooth acceleration downwards and deceleration upwards with zero stutter or ticks.
+ */
+const KineticRollercoasterOrbital: React.FC = () => {
+  const carriageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let angle = 0; // Starts at 0 rad (top / 12 o'clock)
+    let lastTime: number | null = null;
+    let animId: number;
+
+    const v_top = 1.5; // Smooth coasting velocity at apex
+    const g_factor = 14.5; // Heavy gravitational pull for dramatic high-speed descent
+
+    const step = (now: number) => {
+      if (lastTime !== null) {
+        const dt = Math.min((now - lastTime) / 1000, 0.05);
+        // Instantaneous physics velocity:
+        const speed = Math.sqrt(v_top * v_top + 2 * g_factor * (1 - Math.cos(angle)));
+        angle += speed * dt;
+        if (angle >= Math.PI * 2) {
+          angle -= Math.PI * 2;
+        }
+
+        if (carriageRef.current) {
+          const deg = (angle * 180) / Math.PI;
+          carriageRef.current.style.transform = `rotate(${deg}deg)`;
+        }
+      }
+      lastTime = now;
+      animId = requestAnimationFrame(step);
+    };
+
+    animId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animId);
+  }, []);
+
+  return (
+    <div
+      ref={carriageRef}
+      className="absolute inset-0 w-full h-full rounded-full flex items-start justify-center pointer-events-none will-change-transform"
+    >
+      {/* Tactile Capsule / Pill inside the skinny track */}
+      <div className="w-7 h-3 rounded-full bg-neo-surface shadow-neo-raised-sm border border-neo-border/30 dark:border-white/[0.03] -translate-y-1.5 flex items-center justify-center">
+        <div className="w-2.5 h-1 rounded-full bg-neo-secondary/70 shadow-sm" />
+      </div>
+    </div>
+  );
+};
+
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const [demoSwitch, setDemoSwitch] = useState(true);
   const [demoRaised, setDemoRaised] = useState(true);
 
   return (
     <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 text-left pb-28">
-      {/* 1. DOCUMENT TITLE / HERO HEADER */}
-      <header className="space-y-4 pb-2">
-        <div className="text-xs font-mono font-bold uppercase tracking-wider text-neo-secondary">
-          Design System & Reference Manual
+      {/* 1. DOCUMENT TITLE / HERO HEADER (Strict Single-Row on Desktop) */}
+      <header className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center py-4 sm:py-6">
+        {/* Left text content (6 cols) */}
+        <div className="lg:col-span-6 space-y-5 text-left">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-neo-pill shadow-neo-inset-sm bg-neo-well/30 border border-neo-border/40 dark:border-white/[0.03]">
+            <span className="w-2.5 h-2.5 rounded-full bg-neo-secondary animate-pulse" />
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-neo-secondary">
+              Design System &amp; Reference Manual
+            </span>
+          </div>
+
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-neo-primary leading-[1.15]">
+            Understanding Neumorphic UI Design
+          </h1>
+
+          <p className="text-base sm:text-lg text-neo-primary/80 leading-relaxed max-w-xl font-normal">
+            A developer’s practical handbook for Soft UI. This guide covers how Neumorphic surfaces operate, the directional lighting model, when to use extrusions vs. recesses, and contrast principles for modern applications.
+          </p>
+
+          <div className="pt-2 flex flex-wrap items-center gap-4">
+            <button
+              onClick={() => onNavigate('components')}
+              className="px-6 py-3 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm active:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-sm font-bold text-neo-secondary transition-all"
+            >
+              Explore 28+ Components →
+            </button>
+            <button
+              onClick={() => onNavigate('playground')}
+              className="px-6 py-3 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm active:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-sm font-bold text-neo-primary transition-all"
+            >
+              Interactive Sandbox
+            </button>
+          </div>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neo-primary leading-tight">
-          Understanding Neumorphic UI Design
-        </h1>
-        <p className="text-base text-neo-primary/85 leading-relaxed max-w-3xl">
-          A developer’s practical handbook for Soft UI. This guide covers how Neumorphic surfaces operate, the directional lighting model, when to use extrusions vs. recesses, and contrast principles for modern applications.
-        </p>
+
+        {/* Right Unique Orbital Kinetic Track with Gravitational Rollercoaster Pill (6 cols) */}
+        <div className="lg:col-span-6 flex items-center justify-center relative py-4 select-none">
+          {/* Main Kinetic Assembly Container */}
+          <div className="relative w-full max-w-[340px] sm:max-w-[400px] h-[300px] sm:h-[340px] flex items-center justify-center">
+            {/* Skinny Orbital Track Ring (Outer Track) */}
+            <div className="w-64 h-64 sm:w-76 sm:h-76 rounded-full border border-neo-border/30 dark:border-white/[0.03] shadow-neo-inset-sm bg-neo-well/15 flex items-center justify-center relative">
+              {/* Revolving Orbital Carriage with Real Calculus Physics */}
+              <KineticRollercoasterOrbital />
+
+              {/* Central Tactile Clay Disc Assembly */}
+              <div className="w-44 h-44 sm:w-52 sm:h-52 rounded-full shadow-neo-raised-md bg-neo-surface border border-neo-border/30 dark:border-white/[0.03] flex items-center justify-center relative">
+                {/* Core Inset Well */}
+                <div className="w-28 h-28 sm:w-34 sm:h-34 rounded-full shadow-neo-inset-lg bg-neo-well/40 border border-neo-border/30 dark:border-white/[0.03] flex items-center justify-center relative">
+                  {/* Floating Central Tactile Clay Dome */}
+                  <motion.div
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-neo-surface shadow-neo-raised-lg border border-neo-border/30 dark:border-white/[0.03] flex items-center justify-center cursor-pointer z-20 group relative"
+                    animate={{
+                      y: [-3, 3, -3],
+                    }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.92 }}
+                    transition={{
+                      y: { duration: 4, repeat: Infinity, ease: 'easeInOut' },
+                      scale: { type: 'spring', stiffness: 400, damping: 17 },
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
 
       {/* Subtle Engraved Divider */}
@@ -173,11 +281,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
           <button
             onClick={() => setDemoRaised(!demoRaised)}
-            className={`px-5 py-2.5 rounded-neo-control text-xs font-bold transition-all ${
-              demoRaised
-                ? 'shadow-neo-raised-md hover:shadow-neo-raised-lg bg-neo-surface text-neo-secondary border border-neo-border'
-                : 'shadow-neo-inset-md bg-neo-well/40 text-neo-secondary border border-neo-border'
-            }`}
+            className={`px-5 py-2.5 rounded-neo-control text-xs font-bold transition-all ${demoRaised
+              ? 'shadow-neo-raised-md hover:shadow-neo-raised-lg bg-neo-surface text-neo-secondary border border-neo-border'
+              : 'shadow-neo-inset-md bg-neo-well/40 text-neo-secondary border border-neo-border'
+              }`}
           >
             {demoRaised ? 'Current: Raised Element' : 'Current: Inset Well'}
           </button>
@@ -207,15 +314,15 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <ul className="space-y-2.5 text-xs text-neo-primary/85 leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">•</span>
-                <span><strong>Hardware & Audio Interfaces:</strong> Dials, volume sliders, push pads, and media playback transports.</span>
+                <span><strong>Hardware &amp; Audio Interfaces:</strong> Dials, volume sliders, push pads, and media playback transports.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">•</span>
-                <span><strong>Telemetry & Smart Home:</strong> Control centers, temperature sliders, toggle panels, and radial gauges.</span>
+                <span><strong>Telemetry &amp; Smart Home:</strong> Control centers, temperature sliders, toggle panels, and radial gauges.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">•</span>
-                <span><strong>Calculators & Keypads:</strong> OTP pin inputs, number pads, and physical keycap triggers.</span>
+                <span><strong>Calculators &amp; Keypads:</strong> OTP pin inputs, number pads, and physical keycap triggers.</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-emerald-600 font-bold">•</span>
@@ -231,7 +338,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <ul className="space-y-2.5 text-xs text-neo-primary/85 leading-relaxed">
               <li className="flex items-start gap-2">
                 <span className="text-rose-600 font-bold">•</span>
-                <span><strong>Dense Text & Reading Feeds:</strong> Long articles, documentation bodies, or blogs (keep reading surfaces clean and flat).</span>
+                <span><strong>Dense Text &amp; Reading Feeds:</strong> Long articles, documentation bodies, or blogs (keep reading surfaces clean and flat).</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-rose-600 font-bold">•</span>
@@ -244,6 +351,162 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </ul>
           </div>
         </div>
+
+        {/* Application UI Examples Section directly below use cases */}
+        <div className="space-y-4 pt-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="space-y-1">
+              <h3 className="text-base font-bold text-neo-primary">
+                Explore Real-World UI Examples
+              </h3>
+              <p className="text-xs text-neo-primary/70">
+                Click any preview below to explore the live interactive application.
+              </p>
+            </div>
+
+            <button
+              onClick={() => onNavigate('examples')}
+              className="self-start sm:self-auto px-3.5 py-1.5 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-xs font-bold text-neo-secondary transition-all"
+            >
+              All Examples →
+            </button>
+          </div>
+
+          {/* 3-Column Minimalist Full-Bleed Example Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {/* Example 1: Music App */}
+            <div
+              onClick={() => onNavigate('music')}
+              className="group p-[5px] rounded-2xl bg-neo-surface shadow-neo-raised-md hover:shadow-neo-raised-lg border border-neo-border cursor-pointer transition-all duration-300 overflow-hidden relative"
+            >
+              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-zinc-950 isolate">
+                <img
+                  src="/examples/music-preview.png"
+                  alt="Audiophile Music & Spotify Player"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLElement).style.display = 'none';
+                    const fb = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (fb) fb.style.display = 'flex';
+                  }}
+                  className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                />
+
+                {/* Graceful placeholder without emojis */}
+                <div
+                  style={{ display: 'none' }}
+                  className="w-full h-full bg-gradient-to-br from-zinc-900 via-neutral-900 to-black p-5 rounded-xl flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
+                      Audio Workstation
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-white/90 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10 backdrop-blur-sm">
+                      Interactive
+                    </span>
+                  </div>
+                </div>
+
+                {/* Black to Shadow Gradient Overlay with White Text (Fade on hover) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent rounded-xl flex flex-col justify-end p-4 text-left pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neo-secondary mb-0.5 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                    Audio App • Spotify Style
+                  </span>
+                  <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug drop-shadow-sm transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                    Audiophile Music &amp; Spotify Player
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            {/* Example 2: IoT Console */}
+            <div
+              onClick={() => onNavigate('iot')}
+              className="group p-[5px] rounded-2xl bg-neo-surface shadow-neo-raised-md hover:shadow-neo-raised-lg border border-neo-border cursor-pointer transition-all duration-300 overflow-hidden relative"
+            >
+              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-zinc-950 isolate">
+                <img
+                  src="/examples/iot-preview.png"
+                  alt="Industrial IoT Telemetry Console"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLElement).style.display = 'none';
+                    const fb = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (fb) fb.style.display = 'flex';
+                  }}
+                  className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                />
+
+                {/* Graceful placeholder without emojis */}
+                <div
+                  style={{ display: 'none' }}
+                  className="w-full h-full bg-gradient-to-br from-neutral-900 via-zinc-900 to-black p-5 rounded-xl flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
+                      Hardware Telemetry
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-white/90 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10 backdrop-blur-sm">
+                      Interactive
+                    </span>
+                  </div>
+                </div>
+
+                {/* Black to Shadow Gradient Overlay with White Text (Fade on hover) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent rounded-xl flex flex-col justify-end p-4 text-left pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neo-secondary mb-0.5 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                    Hardware UI • Industrial IoT
+                  </span>
+                  <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug drop-shadow-sm transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                    Industrial IoT Telemetry Console
+                  </h4>
+                </div>
+              </div>
+            </div>
+
+            {/* Example 3: Scientific Calculator */}
+            <div
+              onClick={() => onNavigate('calculator')}
+              className="group p-[5px] rounded-2xl bg-neo-surface shadow-neo-raised-md hover:shadow-neo-raised-lg border border-neo-border cursor-pointer transition-all duration-300 overflow-hidden relative sm:col-span-2 lg:col-span-1"
+            >
+              <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-zinc-950 isolate">
+                <img
+                  src="/examples/calculator-preview.png"
+                  alt="Scientific Calculator FX-990"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLElement).style.display = 'none';
+                    const fb = e.currentTarget.nextElementSibling as HTMLElement;
+                    if (fb) fb.style.display = 'flex';
+                  }}
+                  className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                />
+
+                {/* Graceful placeholder without emojis */}
+                <div
+                  style={{ display: 'none' }}
+                  className="w-full h-full bg-gradient-to-br from-zinc-900 via-slate-900 to-black p-5 rounded-xl flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-mono font-bold text-zinc-400 uppercase tracking-wider">
+                      Precision Keypad
+                    </span>
+                    <span className="text-[10px] font-mono font-bold text-white/90 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10 backdrop-blur-sm">
+                      Interactive
+                    </span>
+                  </div>
+                </div>
+
+                {/* Black to Shadow Gradient Overlay with White Text (Fade on hover) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent rounded-xl flex flex-col justify-end p-4 text-left pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-neo-secondary mb-0.5 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                    Hardware UI • Math Keypad
+                  </span>
+                  <h4 className="text-sm sm:text-base font-bold text-white tracking-tight leading-snug drop-shadow-sm transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                    Scientific Calculator FX-990
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Subtle Engraved Divider */}
@@ -253,7 +516,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <section className="space-y-6">
         <div className="space-y-2">
           <h2 className="text-xl font-bold text-neo-primary">
-            5. Color & Contrast Rules
+            5. Color &amp; Contrast Rules
           </h2>
           <p className="text-sm text-neo-primary/85 leading-relaxed">
             Early neumorphic designs were criticized for low contrast. Neumorphia DevKit solves this with calibrated text colors and soft status tones.
@@ -301,7 +564,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="space-y-1 text-left">
           <h3 className="text-sm font-bold text-neo-primary">Ready to explore the components?</h3>
           <p className="text-xs text-neo-primary/70">
-            Browse our catalog of 22 tactile React components with copyable TSX and CSS code.
+            Browse our catalog of 28+ tactile React components with copyable TSX and CSS code.
           </p>
         </div>
 
@@ -313,8 +576,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             Open Sandbox
           </button>
           <button
-            onClick={() => onNavigate('components')}
+            onClick={() => onNavigate('examples')}
             className="px-4 py-2 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-xs font-bold text-neo-secondary transition-all"
+          >
+            View Examples Hub
+          </button>
+          <button
+            onClick={() => onNavigate('components')}
+            className="px-4 py-2 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-xs font-bold text-neo-primary transition-all"
           >
             Browse Components →
           </button>

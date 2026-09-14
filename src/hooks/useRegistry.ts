@@ -2,13 +2,13 @@ import { useState, useEffect } from 'react';
 import { registry, getAllComponents, getComponentById } from '../registry';
 import { RegistryComponent, ComponentVariant } from '../types/registry';
 
-export type AppView = 'home' | 'components' | 'docs' | 'playground' | 'ai';
+export type AppView = 'home' | 'components' | 'docs' | 'playground' | 'ai' | 'iot' | 'music' | 'calculator' | 'examples';
 
 export function useRegistry() {
   const [activeView, setActiveView] = useState<AppView>(() => {
     const params = new URLSearchParams(window.location.search);
     const viewParam = params.get('view') as AppView;
-    if (['home', 'components', 'docs', 'playground', 'ai'].includes(viewParam)) {
+    if (['home', 'components', 'docs', 'playground', 'ai', 'iot', 'music', 'calculator', 'examples'].includes(viewParam)) {
       return viewParam;
     }
     // If a component is directly requested, default view is components
@@ -78,7 +78,7 @@ export function useRegistry() {
       const c = params.get('c') || 'buttons';
       const v = params.get('v') || 'raised';
 
-      if (['home', 'components', 'docs', 'playground', 'ai'].includes(viewParam)) {
+      if (['home', 'components', 'docs', 'playground', 'ai', 'iot', 'music', 'examples'].includes(viewParam)) {
         setActiveView(viewParam);
       } else if (params.get('c')) {
         setActiveView('components');

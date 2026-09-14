@@ -161,6 +161,75 @@ export function getMetadataForRoute(
         ],
       };
 
+    case 'iot':
+      return {
+        title: `IoT Sensor Console & Telemetry Dashboard | ${SITE_CONFIG.name}`,
+        description:
+          'Tactile industrial IoT sensor dashboard with real-time analog captors, 135° dial gauges, hardware push-keys, and analog calibration filters.',
+        canonicalUrl: `${baseUrl}/?view=iot`,
+        ogType: 'website',
+        ogImage: SITE_CONFIG.ogImage,
+        keywords: [
+          ...SITE_CONFIG.defaultKeywords,
+          'IoT dashboard neumorphism',
+          'Soft UI sensor console',
+          'telemetry dashboard',
+          'industrial hardware UI',
+        ],
+      };
+
+    case 'music':
+      return {
+        title: `Audiophile Music & Streaming Console | ${SITE_CONFIG.name}`,
+        description:
+          'Tactile Neumorphic music player and studio dashboard featuring rotating vinyl hardware, active DAC telemetry, bit-perfect streaming, and soft-extruded transport controls.',
+        canonicalUrl: `${baseUrl}/?view=music`,
+        ogType: 'website',
+        ogImage: SITE_CONFIG.ogImage,
+        keywords: [
+          ...SITE_CONFIG.defaultKeywords,
+          'Music player Neumorphism',
+          'Spotify Soft UI app',
+          'audiophile player dashboard',
+          'tactile music player',
+          'Neumorphic audio workstation',
+        ],
+      };
+
+    case 'calculator':
+      return {
+        title: `Scientific Calculator & Keypad Hardware | ${SITE_CONFIG.name}`,
+        description:
+          'Precision Neumorphic scientific calculator with tactile soft keycaps, recessed LCD calculation tape, and mathematical functions.',
+        canonicalUrl: `${baseUrl}/?view=calculator`,
+        ogType: 'website',
+        ogImage: SITE_CONFIG.ogImage,
+        keywords: [
+          ...SITE_CONFIG.defaultKeywords,
+          'Neumorphic calculator',
+          'Soft UI scientific calculator',
+          'tactile keypad',
+          'math calculator UI',
+        ],
+      };
+
+    case 'examples':
+      return {
+        title: `Real-World Application Examples & Templates | ${SITE_CONFIG.name}`,
+        description:
+          'Interactive, production-ready Neumorphic application templates including an industrial IoT telemetry console and an audiophile music streaming app.',
+        canonicalUrl: `${baseUrl}/?view=examples`,
+        ogType: 'website',
+        ogImage: SITE_CONFIG.ogImage,
+        keywords: [
+          ...SITE_CONFIG.defaultKeywords,
+          'Neumorphic application templates',
+          'Soft UI examples',
+          'real world neumorphic UI',
+          'tactile dashboard templates',
+        ],
+      };
+
     case 'home':
     default:
       return {

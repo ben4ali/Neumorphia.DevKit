@@ -28,8 +28,8 @@ export const dropdownMenuDefinition: RegistryComponent = {
           <NeumorphicDropdownMenu
             triggerLabel="Document Actions"
             items={[
-              { id: 'edit', label: 'Edit Metadata', icon: <Edit3 className="w-3.5 h-3.5" />, shortcut: '⌘E' },
-              { id: 'duplicate', label: 'Duplicate File', icon: <Copy className="w-3.5 h-3.5" />, shortcut: '⌘D' },
+              { id: 'edit', label: 'Edit Metadata', icon: <Edit3 className="w-3.5 h-3.5" />, shortcut: 'Ctrl+E' },
+              { id: 'duplicate', label: 'Duplicate File', icon: <Copy className="w-3.5 h-3.5" />, shortcut: 'Ctrl+D' },
               { id: 'share', label: 'Share Link', icon: <Share2 className="w-3.5 h-3.5" /> },
               { id: 'delete', label: 'Delete Artifact', icon: <Trash2 className="w-3.5 h-3.5" />, destructive: true },
             ]}
@@ -45,8 +45,8 @@ export function DropdownDemo() {
     <NeumorphicDropdownMenu
       triggerLabel="Document Actions"
       items={[
-        { id: 'edit', label: 'Edit Metadata', icon: <Edit3 className="w-3.5 h-3.5" />, shortcut: '⌘E' },
-        { id: 'duplicate', label: 'Duplicate', icon: <Copy className="w-3.5 h-3.5" />, shortcut: '⌘D' },
+        { id: 'edit', label: 'Edit Metadata', icon: <Edit3 className="w-3.5 h-3.5" />, shortcut: 'Ctrl+E' },
+        { id: 'duplicate', label: 'Duplicate', icon: <Copy className="w-3.5 h-3.5" />, shortcut: 'Ctrl+D' },
         { id: 'delete', label: 'Delete', icon: <Trash2 className="w-3.5 h-3.5" />, destructive: true },
       ]}
     />

@@ -3,11 +3,9 @@ import { Highlight, themes } from 'prism-react-renderer';
 import { useTheme } from '../hooks/useTheme';
 
 export const PlaygroundPage: React.FC = () => {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-  const codeTheme = isDark ? themes.nightOwl : themes.oneLight;
-  const codeBgClass = isDark ? 'bg-[#14161b] text-neutral-200' : 'bg-[#f8f9fc] text-[#24292f]';
-  const lineNumClass = isDark ? 'text-neutral-600' : 'text-neutral-400';
+  const codeTheme = themes.nightOwl;
+  const codeBgClass = 'bg-[#12141a] text-neutral-200';
+  const lineNumClass = 'text-neutral-600';
 
   // Playground state
   const [angle, setAngle] = useState<number>(135);
@@ -316,12 +314,12 @@ export const PlaygroundPage: React.FC = () => {
           {/* High-Contrast Syntax-Highlighted Code Exporters */}
           <div className="space-y-6">
             {/* 1. Vanilla CSS Output */}
-            <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border overflow-hidden text-left">
-              <div className="flex items-center justify-between px-5 py-2.5 bg-neo-well/30 border-b border-neo-border/50">
+            <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border/40 dark:border-white/[0.03] overflow-hidden text-left">
+              <div className="flex items-center justify-between px-5 py-2.5 bg-neo-well/30 border-b border-neo-border/30 dark:border-black/50 dark:border-b-white/[0.02]">
                 <span className="text-xs font-bold text-neo-primary">Vanilla CSS Rule</span>
                 <button
                   onClick={() => copyToClipboard(cssSnippet, 'css')}
-                  className="px-3 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm active:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-xs font-bold text-neo-secondary transition-all"
+                  className="px-3 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm active:shadow-neo-inset-sm bg-neo-surface border border-neo-border/40 dark:border-white/[0.03] text-xs font-bold text-neo-secondary transition-all"
                 >
                   {copiedType === 'css' ? 'Copied!' : 'Copy CSS'}
                 </button>
@@ -329,7 +327,7 @@ export const PlaygroundPage: React.FC = () => {
               <div
                 role="region"
                 aria-label="Generated Vanilla CSS rule snippet"
-                className={`p-4 ${codeBgClass} text-xs font-mono overflow-x-auto leading-relaxed border-t border-neo-border/30 transition-colors duration-200`}
+                className={`p-4 ${codeBgClass} text-xs font-mono overflow-x-auto leading-relaxed border-t border-neo-border/20 dark:border-black/50 transition-colors duration-200`}
               >
                 <Highlight theme={codeTheme} code={cssSnippet} language="css">
                   {({ style, tokens, getLineProps, getTokenProps }) => (
@@ -354,12 +352,12 @@ export const PlaygroundPage: React.FC = () => {
             </div>
 
             {/* 2. Tailwind Arbitrary Class Output */}
-            <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border overflow-hidden text-left">
-              <div className="flex items-center justify-between px-5 py-2.5 bg-neo-well/30 border-b border-neo-border/50">
+            <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border/40 dark:border-white/[0.03] overflow-hidden text-left">
+              <div className="flex items-center justify-between px-5 py-2.5 bg-neo-well/30 border-b border-neo-border/30 dark:border-black/50 dark:border-b-white/[0.02]">
                 <span className="text-xs font-bold text-neo-primary">Tailwind Arbitrary Class</span>
                 <button
                   onClick={() => copyToClipboard(tailwindSnippet, 'tailwind')}
-                  className="px-3 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm active:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-xs font-bold text-neo-secondary transition-all"
+                  className="px-3 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm active:shadow-neo-inset-sm bg-neo-surface border border-neo-border/40 dark:border-white/[0.03] text-xs font-bold text-neo-secondary transition-all"
                 >
                   {copiedType === 'tailwind' ? 'Copied!' : 'Copy Tailwind'}
                 </button>
@@ -367,7 +365,7 @@ export const PlaygroundPage: React.FC = () => {
               <div
                 role="region"
                 aria-label="Generated Tailwind CSS class snippet"
-                className={`p-4 ${codeBgClass} text-xs font-mono overflow-x-auto leading-relaxed border-t border-neo-border/30 transition-colors duration-200`}
+                className={`p-4 ${codeBgClass} text-xs font-mono overflow-x-auto leading-relaxed border-t border-neo-border/20 dark:border-black/50 transition-colors duration-200`}
               >
                 <Highlight theme={codeTheme} code={tailwindSnippet} language="html">
                   {({ style, tokens, getLineProps, getTokenProps }) => (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { useRegistry } from './hooks/useRegistry';
 import { useSEO } from './hooks/useSEO';
@@ -11,6 +11,10 @@ import { HomePage } from './pages/HomePage';
 import { DocsPage } from './pages/DocsPage';
 import { PlaygroundPage } from './pages/PlaygroundPage';
 import { AIPromptsPage } from './pages/AIPromptsPage';
+import { IoTDashboardPage } from './pages/IoTDashboardPage';
+import { MusicAppPage } from './pages/MusicAppPage';
+import { CalculatorAppPage } from './pages/CalculatorAppPage';
+import { ExamplesPage } from './pages/ExamplesPage';
 
 export function App() {
   const { theme, toggleTheme } = useTheme();
@@ -30,6 +34,18 @@ export function App() {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [filterQuery, setFilterQuery] = useState('');
+
+  // Global Ctrl + K / Cmd + K Shortcut to Open Search Modal
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
 
   return (
     <div className="min-h-screen bg-neo-base text-neo-primary flex flex-col selection:bg-indigo-600 selection:text-white">
@@ -135,12 +151,60 @@ export function App() {
             }}
           />
         )}
+
+        {activeView === 'iot' && (
+          <IoTDashboardPage
+            onNavigate={(view, componentId) => {
+              if (componentId) {
+                selectComponent(componentId);
+              } else {
+                selectView(view);
+              }
+            }}
+          />
+        )}
+
+        {activeView === 'music' && (
+          <MusicAppPage
+            onNavigate={(view, componentId) => {
+              if (componentId) {
+                selectComponent(componentId);
+              } else {
+                selectView(view);
+              }
+            }}
+          />
+        )}
+
+        {activeView === 'calculator' && (
+          <CalculatorAppPage
+            onNavigate={(view, componentId) => {
+              if (componentId) {
+                selectComponent(componentId);
+              } else {
+                selectView(view);
+              }
+            }}
+          />
+        )}
+
+        {activeView === 'examples' && (
+          <ExamplesPage
+            onNavigate={(view, componentId) => {
+              if (componentId) {
+                selectComponent(componentId);
+              } else {
+                selectView(view);
+              }
+            }}
+          />
+        )}
       </div>
 
       {/* Solid Application Footer */}
       <Footer onNavigate={selectView} />
 
-      {/* Global Command Palette (⌘K) */}
+      {/* Global Command Palette (Ctrl+K) */}
       <CommandMenu
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}

@@ -32,14 +32,14 @@ export const kbdDefinition: RegistryComponent = {
       previewComponent: () => (
         <div className="space-y-6 text-left py-4">
           <div className="p-3 rounded-neo-control shadow-neo-inset-sm bg-neo-well/30 text-xs text-neo-primary/70 text-center font-mono">
-            💡 Type on your physical keyboard (e.g. ⌘, K, Shift, Enter, Space, W, A, S, D) to watch them press down!
+            💡 Type on your physical keyboard (e.g. Ctrl, K, Shift, Enter, Space, W, A, S, D) to watch them press down!
           </div>
 
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <span className="text-xs font-semibold text-neo-primary/70 w-36">Command Palette:</span>
               <div className="flex items-center gap-1.5">
-                <NeumorphicKbd keyTrigger="meta">⌘</NeumorphicKbd>
+                <NeumorphicKbd keyTrigger="control">Ctrl</NeumorphicKbd>
                 <NeumorphicKbd keyTrigger="k">K</NeumorphicKbd>
               </div>
             </div>
@@ -81,7 +81,7 @@ export const kbdDefinition: RegistryComponent = {
 export function ShortcutDemo() {
   return (
     <div className="flex items-center gap-1.5">
-      <NeumorphicKbd keyTrigger="meta">⌘</NeumorphicKbd>
+      <NeumorphicKbd keyTrigger="control">Ctrl</NeumorphicKbd>
       <NeumorphicKbd keyTrigger="k">K</NeumorphicKbd>
     </div>
   );

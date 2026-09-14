@@ -43,11 +43,11 @@ export const NeumorphicGauge: React.FC<NeumorphicGaugeProps> = ({
       {/* Outer Recessed Ring Frame */}
       <div
         style={{ width: size + 24, height: size + 24 }}
-        className="rounded-full shadow-neo-inset-md bg-neo-surface border border-neo-border flex items-center justify-center p-3"
+        className="rounded-full shadow-neo-inset-md bg-neo-surface border border-neo-border/40 dark:border-white/[0.03] flex items-center justify-center p-3"
       >
         <div
           style={{ width: size, height: size }}
-          className="relative rounded-full shadow-neo-raised-sm bg-neo-surface border border-neo-border/40 flex items-center justify-center"
+          className="relative rounded-full shadow-neo-raised-sm bg-neo-surface border border-neo-border/30 dark:border-white/[0.03] flex items-center justify-center"
         >
           <svg
             width={size}
@@ -61,7 +61,7 @@ export const NeumorphicGauge: React.FC<NeumorphicGaugeProps> = ({
               r={radius}
               stroke="currentColor"
               strokeWidth={strokeWidth}
-              className="text-black/[0.08] dark:text-white/[0.08]"
+              className="text-black/[0.08] dark:text-black/60"
               fill="transparent"
             />
             {/* Active High-Contrast Progress Arc */}

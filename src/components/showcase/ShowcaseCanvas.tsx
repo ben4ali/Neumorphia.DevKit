@@ -86,9 +86,9 @@ export const ShowcaseCanvas: React.FC<ShowcaseCanvasProps> = ({
       />
 
       {/* Interactive Canvas Surface Container */}
-      <div className="rounded-neo-card-lg bg-neo-surface shadow-neo-raised-md border border-neo-border overflow-hidden">
+      <div className="rounded-neo-card-lg bg-neo-surface shadow-neo-raised-md border border-neo-border/40 dark:border-white/[0.03] overflow-hidden">
         {/* Canvas Stage Toolbar */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-neo-well/30 border-b border-neo-border/60">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-neo-well/30 border-b border-neo-border/30 dark:border-black/50 dark:border-b-white/[0.02]">
           <div className="flex items-center gap-2">
             <span className="text-xs font-bold text-neo-primary">{activeVariant.name}</span>
             <span className="text-[11px] text-neo-primary/50 hidden sm:inline">
@@ -153,7 +153,7 @@ export const ShowcaseCanvas: React.FC<ShowcaseCanvasProps> = ({
               className="relative w-full max-w-5xl h-[85vh] rounded-neo-card-lg bg-neo-base border border-neo-border shadow-2xl flex flex-col overflow-hidden z-10"
             >
               {/* Top Modal Bar */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-neo-border/60 bg-neo-surface">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-neo-border/30 dark:border-black/50 dark:border-b-white/[0.02] bg-neo-surface">
                 <div className="space-y-0.5 text-left">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-bold text-neo-secondary uppercase">

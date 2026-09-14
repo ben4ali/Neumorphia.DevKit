@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Highlight, themes } from 'prism-react-renderer';
 import { Copy, Check } from 'lucide-react';
-import { useTheme } from '../../hooks/useTheme';
 
 interface CodeViewerProps {
   tailwindSnippet: string;
@@ -9,11 +8,9 @@ interface CodeViewerProps {
 }
 
 export const CodeViewer: React.FC<CodeViewerProps> = ({ tailwindSnippet, cssSnippet }) => {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-  const codeTheme = isDark ? themes.nightOwl : themes.oneLight;
-  const codeBgClass = isDark ? 'bg-[#14161b] text-neutral-200' : 'bg-[#f8f9fc] text-[#24292f]';
-  const lineNumClass = isDark ? 'text-neutral-600' : 'text-neutral-400';
+  const codeTheme = themes.nightOwl;
+  const codeBgClass = 'bg-[#12141a] text-neutral-200';
+  const lineNumClass = 'text-neutral-600';
 
   const [activeTab, setActiveTab] = useState<'tailwind' | 'css'>('tailwind');
   const [copied, setCopied] = useState(false);
@@ -28,11 +25,11 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({ tailwindSnippet, cssSnip
   };
 
   return (
-    <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border overflow-hidden text-left">
+    <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border/40 dark:border-white/[0.03] overflow-hidden text-left">
       {/* Code Header Bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-neo-well/30 border-b border-neo-border/60">
+      <div className="flex items-center justify-between px-4 py-2.5 bg-neo-well/30 border-b border-neo-border/30 dark:border-black/50">
         <div className="flex items-center gap-2">
-          <div className="inline-flex p-1 rounded-neo-pill shadow-neo-inset-sm bg-neo-surface border border-neo-border">
+          <div className="inline-flex p-1 rounded-neo-pill shadow-neo-inset-sm bg-neo-surface border border-neo-border/40 dark:border-white/[0.03]">
             <button
               onClick={() => setActiveTab('tailwind')}
               className={`px-3 py-1 rounded-neo-pill text-xs font-semibold transition-all ${
@@ -79,7 +76,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({ tailwindSnippet, cssSnip
       <div
         role="region"
         aria-label={`${activeTab === 'tailwind' ? 'Tailwind TSX' : 'Vanilla CSS'} code snippet`}
-        className={`p-4 ${codeBgClass} text-xs font-mono overflow-x-auto leading-relaxed border-t border-neo-border/30 transition-colors duration-200 selection:bg-indigo-600 selection:text-white`}
+        className={`p-4 ${codeBgClass} text-xs font-mono overflow-x-auto leading-relaxed border-t border-neo-border/20 dark:border-black/50 transition-colors duration-200 selection:bg-indigo-600 selection:text-white`}
       >
         <Highlight theme={codeTheme} code={currentSnippet.trim()} language={language}>
           {({ className, style, tokens, getLineProps, getTokenProps }) => (

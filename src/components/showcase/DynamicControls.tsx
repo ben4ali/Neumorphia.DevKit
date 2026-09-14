@@ -18,7 +18,7 @@ export const DynamicControls: React.FC<DynamicControlsProps> = ({
   if (!controls || controls.length === 0) return null;
 
   return (
-    <div className="p-4 bg-neo-surface border-t border-neo-border/60 flex flex-wrap items-center justify-between gap-4">
+    <div className="p-4 bg-neo-surface border-t border-neo-border/30 dark:border-black/50 dark:border-t-white/[0.02] flex flex-wrap items-center justify-between gap-4">
       <div className="flex flex-wrap items-center gap-5">
         <div className="flex items-center gap-1.5 text-xs font-bold text-neo-secondary uppercase tracking-wider">
           <Sliders className="w-3.5 h-3.5" />

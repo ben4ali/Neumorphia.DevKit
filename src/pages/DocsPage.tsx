@@ -10,10 +10,10 @@ interface DocsPageProps {
 export const DocsPage: React.FC<DocsPageProps> = ({ onNavigate }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
-  const codeTheme = isDark ? themes.nightOwl : themes.oneLight;
-  const codeBgClass = isDark ? 'bg-[#14161b] text-neutral-200' : 'bg-[#f8f9fc] text-[#24292f]';
-  const headerBgClass = isDark ? 'bg-[#1e1e24] border-neutral-800 text-neutral-400' : 'bg-neo-well/30 border-neo-border/60 text-neo-primary';
-  const lineNumClass = isDark ? 'text-neutral-600' : 'text-neutral-400';
+  const codeTheme = themes.nightOwl;
+  const codeBgClass = 'bg-[#12141a] text-neutral-200';
+  const headerBgClass = 'bg-[#181a20] border-b border-black/40 text-neutral-300';
+  const lineNumClass = 'text-neutral-600';
 
   const [pkgManager, setPkgManager] = useState<'npm' | 'pnpm' | 'bun' | 'yarn'>('npm');
   const [copiedSection, setCopiedSection] = useState<string | null>(null);
@@ -190,12 +190,12 @@ export function MyDashboard() {
           Paste the base lighting variables into your global stylesheet (e.g., <code className="font-mono text-neo-secondary">src/index.css</code> or <code className="font-mono text-neo-secondary">app/globals.css</code>).
         </p>
 
-        <div className="relative rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border overflow-hidden">
-          <div className={`flex items-center justify-between px-4 py-2 border-b ${headerBgClass} text-xs font-mono`}>
-            <span>src/index.css</span>
+        <div className="relative rounded-neo-card bg-[#12141a] shadow-neo-raised-md border border-black/40 dark:border-white/[0.03] overflow-hidden">
+          <div className={`flex items-center justify-between px-4 py-2.5 ${headerBgClass} text-xs font-mono`}>
+            <span className="text-neutral-400">src/index.css</span>
             <button
               onClick={() => copyToClipboard(cssTokensCode, 'step1')}
-              className="px-2.5 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-neo-secondary transition-colors text-xs font-sans font-semibold"
+              className="px-2.5 py-1 rounded-neo-control bg-[#222530] hover:bg-[#2b2f3d] border border-neutral-700/60 text-neutral-200 transition-colors text-xs font-sans font-semibold"
             >
               {copiedSection === 'step1' ? 'Copied' : 'Copy CSS'}
             </button>
@@ -238,12 +238,12 @@ export function MyDashboard() {
           Update <code className="font-mono text-neo-secondary">tailwind.config.ts</code> with the 135° shadow elevation scales, border radii, and token colors.
         </p>
 
-        <div className="relative rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border overflow-hidden">
-          <div className={`flex items-center justify-between px-4 py-2 border-b ${headerBgClass} text-xs font-mono`}>
-            <span>tailwind.config.ts</span>
+        <div className="relative rounded-neo-card bg-[#12141a] shadow-neo-raised-md border border-black/40 dark:border-white/[0.03] overflow-hidden">
+          <div className={`flex items-center justify-between px-4 py-2.5 ${headerBgClass} text-xs font-mono`}>
+            <span className="text-neutral-400">tailwind.config.ts</span>
             <button
               onClick={() => copyToClipboard(tailwindConfigCode, 'step2')}
-              className="px-2.5 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-neo-secondary transition-colors text-xs font-sans font-semibold"
+              className="px-2.5 py-1 rounded-neo-control bg-[#222530] hover:bg-[#2b2f3d] border border-neutral-700/60 text-neutral-200 transition-colors text-xs font-sans font-semibold"
             >
               {copiedSection === 'step2' ? 'Copied' : 'Copy Config'}
             </button>
@@ -287,18 +287,18 @@ export function MyDashboard() {
         </p>
 
         {/* Package Manager Tabs */}
-        <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border p-5 space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-neo-border/50">
+        <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border/40 dark:border-white/[0.03] p-5 space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-neo-border/30 dark:border-black/50 dark:border-b-white/[0.02]">
             <span className="text-xs font-bold text-neo-primary">Install Supporting Packages</span>
 
-            <div className="flex items-center gap-1 p-1 rounded-neo-badge shadow-neo-inset-sm bg-neo-surface border border-neo-border">
+            <div className="flex items-center gap-1.5 p-1 rounded-neo-badge shadow-neo-inset-sm bg-neo-well/40 border border-neo-border/40 dark:border-white/[0.03]">
               {(['npm', 'pnpm', 'bun', 'yarn'] as const).map((mgr) => (
                 <button
                   key={mgr}
                   onClick={() => setPkgManager(mgr)}
-                  className={`px-2.5 py-0.5 text-xs font-mono font-bold rounded-neo-badge transition-all ${
+                  className={`px-3 py-1 text-xs font-mono font-bold rounded-neo-badge transition-all ${
                     pkgManager === mgr
-                      ? 'shadow-neo-raised-sm bg-neo-base text-neo-secondary border border-neo-border'
+                      ? 'shadow-neo-raised-sm bg-neo-surface text-neo-primary font-black border border-neo-border/40 dark:border-white/[0.03]'
                       : 'text-neo-primary/60 hover:text-neo-primary'
                   }`}
                 >
@@ -308,26 +308,29 @@ export function MyDashboard() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between p-3 rounded-neo-control shadow-neo-inset-sm bg-neo-well/30 border border-neo-border">
-            <code className="text-xs font-mono text-neo-primary truncate mr-2">
-              {getInstallCmd()}
-            </code>
+          <div className="flex items-center justify-between p-3.5 rounded-neo-control bg-[#12141a] border border-black/40 dark:border-white/[0.03] shadow-inner">
+            <div className="flex items-center gap-2.5 overflow-hidden mr-2">
+              <span className="text-xs font-mono font-bold text-neutral-500 select-none">$</span>
+              <code className="text-xs font-mono font-bold text-emerald-400 dark:text-emerald-300 truncate">
+                {getInstallCmd()}
+              </code>
+            </div>
             <button
               onClick={() => copyToClipboard(getInstallCmd(), 'installCmd')}
-              className="flex-shrink-0 px-3 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-xs font-bold text-neo-secondary transition-all"
+              className="flex-shrink-0 px-3.5 py-1.5 rounded-neo-control bg-[#1e222d] hover:bg-[#2b3040] active:bg-[#12141a] border border-neutral-700/60 text-xs font-bold text-neutral-200 transition-all shadow-sm"
             >
-              {copiedSection === 'installCmd' ? 'Copied' : 'Copy'}
+              {copiedSection === 'installCmd' ? 'Copied ✓' : 'Copy'}
             </button>
           </div>
         </div>
 
         {/* Example Usage Snippet */}
-        <div className="relative rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border overflow-hidden">
-          <div className={`flex items-center justify-between px-4 py-2 border-b ${headerBgClass} text-xs font-mono`}>
-            <span>Example Component Usage</span>
+        <div className="relative rounded-neo-card bg-[#12141a] shadow-neo-raised-md border border-black/40 dark:border-white/[0.03] overflow-hidden">
+          <div className={`flex items-center justify-between px-4 py-2.5 ${headerBgClass} text-xs font-mono`}>
+            <span className="text-neutral-400">Example Component Usage</span>
             <button
               onClick={() => copyToClipboard(componentUsageCode, 'usage')}
-              className="px-2.5 py-1 rounded-neo-control shadow-neo-raised-sm hover:shadow-neo-inset-sm bg-neo-surface border border-neo-border text-neo-secondary transition-colors text-xs font-sans font-semibold"
+              className="px-2.5 py-1 rounded-neo-control bg-[#222530] hover:bg-[#2b2f3d] border border-neutral-700 text-neutral-200 transition-colors text-xs font-sans font-semibold"
             >
               {copiedSection === 'usage' ? 'Copied' : 'Copy TSX'}
             </button>

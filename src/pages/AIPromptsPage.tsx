@@ -9,11 +9,9 @@ interface AIPromptsPageProps {
 }
 
 export const AIPromptsPage: React.FC<AIPromptsPageProps> = ({ onNavigate }) => {
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-  const codeTheme = isDark ? themes.nightOwl : themes.oneLight;
-  const codeBgClass = isDark ? 'bg-[#14161b] text-neutral-200' : 'bg-[#f8f9fc] text-[#24292f]';
-  const lineNumClass = isDark ? 'text-neutral-600' : 'text-neutral-400';
+  const codeTheme = themes.nightOwl;
+  const codeBgClass = 'bg-[#12141a] text-neutral-200';
+  const lineNumClass = 'text-neutral-600';
 
   const [activeWorkflowTab, setActiveWorkflowTab] = useState<'cursor' | 'copilot' | 'chat'>('cursor');
   const [copiedId, setCopiedId] = useState<string | null>(null);

@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer className="w-full border-t border-neo-border bg-neo-base mt-auto transition-colors duration-200">
+    <footer className="w-full border-t border-neo-border/30 dark:border-black/50 dark:border-t-white/[0.02] bg-neo-base mt-auto transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand & Author */}
@@ -64,6 +64,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             >
               Sandbox
             </button>
+            <button
+              onClick={() => onNavigate('examples')}
+              className="px-2.5 py-1 rounded-neo-control text-neo-secondary font-bold hover:text-neo-primary hover:bg-neo-well/30 transition-colors"
+            >
+              Examples
+            </button>
           </div>
 
           {/* Actions: GitHub & Back to top */}
@@ -87,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* Bottom Credits */}
-        <div className="mt-8 pt-6 border-t border-neo-border/40 flex flex-col sm:flex-row items-center justify-between text-[11px] text-neo-primary/60 gap-2">
+        <div className="mt-8 pt-6 border-t border-neo-border/30 dark:border-white/[0.03] flex flex-col sm:flex-row items-center justify-between text-[11px] text-neo-primary/60 gap-2">
           <p>© {new Date().getFullYear()} Neumorphia DevKit. Developed by Ali Benkarrouch.</p>
           <a
             href="https://github.com/ben4ali"
