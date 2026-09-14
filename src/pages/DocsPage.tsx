@@ -330,7 +330,7 @@ export function MyDashboard() {
             <span className="text-neutral-400">Example Component Usage</span>
             <button
               onClick={() => copyToClipboard(componentUsageCode, 'usage')}
-              className="px-2.5 py-1 rounded-neo-control bg-[#222530] hover:bg-[#2b2f3d] border border-neutral-700 text-neutral-200 transition-colors text-xs font-sans font-semibold"
+              className="px-2.5 py-1 rounded-neo-control bg-[#222530] hover:bg-[#2b2f3d] border border-neutral-700/60 text-neutral-200 transition-colors text-xs font-sans font-semibold"
             >
               {copiedSection === 'usage' ? 'Copied' : 'Copy TSX'}
             </button>
@@ -360,11 +360,11 @@ export function MyDashboard() {
       <div className="nms-divider-h" />
 
       {/* Next Step Banner */}
-      <div className="p-6 rounded-neo-card-lg bg-neo-surface shadow-neo-raised-md border border-neo-border flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-6 rounded-neo-card-lg bg-neo-surface shadow-neo-raised-md border border-neo-border/40 dark:border-white/[0.03] flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="space-y-1 text-center sm:text-left">
           <h3 className="text-base font-bold text-neo-primary">Ready to build?</h3>
           <p className="text-xs text-neo-primary/70">
-            Browse our catalog of 22 tactile components with copyable TSX and CSS code.
+            Browse our catalog of 28+ tactile components with full copyable TSX source code, CLI commands, and CSS tokens.
           </p>
         </div>
         <button

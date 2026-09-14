@@ -193,12 +193,16 @@ export const ShowcaseCanvas: React.FC<ShowcaseCanvasProps> = ({
         )}
       </AnimatePresence>
 
-      {/* Code Inspector (Tailwind vs Vanilla CSS with Prism highlighting) */}
+      {/* Code Inspector (Component Source, CLI, Usage, Vanilla CSS) */}
       <div className="space-y-2">
-        <h2 className="text-xs font-bold uppercase tracking-wider text-neo-primary/70">
-          Implementation Code
+        <h2 className="text-xs font-bold uppercase tracking-wider text-neo-secondary">
+          Component Source & Integration Code
         </h2>
-        <CodeViewer tailwindSnippet={tailwindSnippet} cssSnippet={cssSnippet} />
+        <CodeViewer
+          componentId={component.id}
+          tailwindSnippet={tailwindSnippet}
+          cssSnippet={cssSnippet}
+        />
       </div>
 
       {/* Design Token & Shadow Reference Table */}
