@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Highlight, themes } from 'prism-react-renderer';
-import { Copy, Check, Terminal, FileCode, Play, Sparkles } from 'lucide-react';
+import { Copy, Check } from 'lucide-react';
 import { getComponentSource } from '../../registry/sources';
 
 interface CodeViewerProps {
@@ -20,21 +20,21 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
 
   const sourceInfo = getComponentSource(componentId);
 
-  const [activeTab, setActiveTab] = useState<'cli' | 'source' | 'usage' | 'css'>('source');
+  const [activeTab, setActiveTab] = useState<'source' | 'usage' | 'cli' | 'css'>('source');
   const [copied, setCopied] = useState(false);
   const [cliPkg, setCliPkg] = useState<'npx' | 'pnpm' | 'bun' | 'curl'>('npx');
 
   const getCliCommand = () => {
     switch (cliPkg) {
       case 'pnpm':
-        return `pnpm dlx neumorphia add ${componentId}`;
+        return `pnpm dlx neumorphia-devkit add ${componentId}`;
       case 'bun':
-        return `bunx neumorphia add ${componentId}`;
+        return `bunx neumorphia-devkit add ${componentId}`;
       case 'curl':
         return sourceInfo.curlCmd;
       case 'npx':
       default:
-        return `npx neumorphia add ${componentId}`;
+        return `npx neumorphia-devkit add ${componentId}`;
     }
   };
 
@@ -71,60 +71,56 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
 
   return (
     <div className="rounded-neo-card bg-neo-surface shadow-neo-raised-md border border-neo-border/40 dark:border-white/[0.03] overflow-hidden text-left">
-      {/* Code Header Bar */}
+      {/* Code Header Bar (Clean text-only tabs without icons) */}
       <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 bg-neo-well/30 border-b border-neo-border/30 dark:border-black/50">
         <div className="flex flex-wrap items-center gap-2">
           {/* Main Mode Tabs */}
           <div className="inline-flex p-1 rounded-neo-pill shadow-neo-inset-sm bg-neo-surface border border-neo-border/40 dark:border-white/[0.03] text-xs">
             <button
               onClick={() => setActiveTab('source')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-neo-pill font-semibold transition-all ${
+              className={`px-3 py-1 rounded-neo-pill font-semibold transition-all ${
                 activeTab === 'source'
                   ? 'bg-neo-secondary text-white shadow-sm font-bold'
                   : 'text-neo-primary/70 hover:text-neo-primary'
               }`}
               title="Full production-ready React component code"
             >
-              <FileCode className="w-3.5 h-3.5" />
               <span>{sourceInfo.fileName} (Source)</span>
             </button>
 
             <button
               onClick={() => setActiveTab('usage')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-neo-pill font-semibold transition-all ${
+              className={`px-3 py-1 rounded-neo-pill font-semibold transition-all ${
                 activeTab === 'usage'
                   ? 'bg-neo-secondary text-white shadow-sm font-bold'
                   : 'text-neo-primary/70 hover:text-neo-primary'
               }`}
               title="How to use this component in your pages"
             >
-              <Play className="w-3.5 h-3.5" />
               <span>Usage Demo</span>
             </button>
 
             <button
               onClick={() => setActiveTab('cli')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-neo-pill font-semibold transition-all ${
+              className={`px-3 py-1 rounded-neo-pill font-semibold transition-all ${
                 activeTab === 'cli'
                   ? 'bg-neo-secondary text-white shadow-sm font-bold'
                   : 'text-neo-primary/70 hover:text-neo-primary'
               }`}
               title="Install or download via CLI/cURL"
             >
-              <Terminal className="w-3.5 h-3.5" />
               <span>CLI / Terminal</span>
             </button>
 
             <button
               onClick={() => setActiveTab('css')}
-              className={`flex items-center gap-1.5 px-3 py-1 rounded-neo-pill font-semibold transition-all ${
+              className={`px-3 py-1 rounded-neo-pill font-semibold transition-all ${
                 activeTab === 'css'
                   ? 'bg-neo-secondary text-white shadow-sm font-bold'
                   : 'text-neo-primary/70 hover:text-neo-primary'
               }`}
               title="Raw Vanilla CSS shadow rules"
             >
-              <Sparkles className="w-3.5 h-3.5" />
               <span>Vanilla CSS</span>
             </button>
           </div>
@@ -133,7 +129,7 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
         {/* Copy Button & Target Path Info */}
         <div className="flex items-center gap-2">
           {activeTab === 'source' && (
-            <span className="hidden sm:inline-block font-mono text-[11px] text-neo-primary/50 px-2 py-0.5 rounded-neo-badge bg-neo-well/30 border border-neo-border/30 dark:border-white/[0.02]">
+            <span className="hidden sm:inline-block font-mono text-[11px] text-neo-primary/60 px-2.5 py-0.5 rounded-neo-badge bg-neo-well/30 border border-neo-border/30 dark:border-white/[0.02]">
               src/components/ui/{sourceInfo.fileName}
             </span>
           )}
@@ -183,22 +179,22 @@ export const CodeViewer: React.FC<CodeViewerProps> = ({
             ))}
           </div>
 
-          <span className="text-[11px] text-neutral-500 hidden sm:inline">
-            Directly pulls <code className="text-emerald-400 font-bold">{sourceInfo.fileName}</code> into your project
+          <span className="text-[11px] text-neutral-400 hidden sm:inline">
+            Directly pulls <code className="text-white font-bold bg-neutral-800 px-1 py-0.5 rounded">{sourceInfo.fileName}</code> into your project
           </span>
         </div>
       )}
 
-      {/* Syntax-Highlighted Code / Command Container */}
+      {/* Syntax-Highlighted Code / Command Container with high-contrast text & selection */}
       <div
         role="region"
         aria-label={`${activeTab} code snippet`}
         className={`p-4 ${codeBgClass} text-xs font-mono overflow-x-auto leading-relaxed border-t border-neo-border/20 dark:border-black/50 transition-colors duration-200 selection:bg-indigo-600 selection:text-white max-h-[500px]`}
       >
         {activeTab === 'cli' ? (
-          <div className="flex items-center gap-3 py-2 px-1">
-            <span className="text-neutral-500 select-none font-bold text-sm">$</span>
-            <code className="text-emerald-400 font-bold text-sm select-all">
+          <div className="flex items-center gap-3 py-2 px-1 selection:bg-indigo-600 selection:text-white">
+            <span className="text-neutral-400 select-none font-bold text-sm">$</span>
+            <code className="text-white font-bold text-sm select-all tracking-wide selection:bg-indigo-600 selection:text-white">
               {getCliCommand()}
             </code>
           </div>

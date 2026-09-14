@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "type": "module",
   "author": "Ali Benkarrouch",
+  "bin": {
+    "neumorphia-devkit": "./bin/cli.js",
+    "neumorphia": "./bin/cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ben4ali/Neumorphia.DevKit.git"
